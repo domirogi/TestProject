@@ -16,7 +16,7 @@ namespace Project.Service.Repository.IRepository
         Task AddModelAsync(VehicleModel modelAdd);
         Task UpdateModelAsync(int id, VehicleModel modelUpdate);
         Task DeleteModelAsync(int id);
-        Task<VehicleModel> GetModelDetailsAsync(int id);
+        Task<VehicleModel> GetModelDetailsAsync(int id); 
         Task<IPagedList<VehicleModel>> GetFilterModelsAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging);
     }
 }
