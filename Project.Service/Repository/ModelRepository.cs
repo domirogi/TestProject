@@ -24,24 +24,21 @@ namespace Project.Service.Repository
 
 
         public async Task<VehicleModel> GetByIdModelAsync(int id) => await GetByIdAsync(id);
-       
 
-        public Task<IPagedList<VehicleModel>> GetFilterModelsAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging)
+
+        public Task<IPagedList<VehicleModel>> FindModelsAsync(IFilterModel filterModel, IModelSorting sorting, IModelPaging paging)
         {
+           
             Expression<Func<VehicleModel, bool>> filter = null;
-            if (filtering.FilterId != null)
+            if (filterModel.FilterId != 0)
             {
-                filter = m => m.MakeId == filtering.FilterId;
+                filter = m => m.MakeId == filterModel.FilterId;
             }
             Func<IQueryable<VehicleModel>, IOrderedQueryable<VehicleModel>> orderBy = sorting.Sort switch
             {
-                "Name" => q => q.OrderBy(m => m.Name),
-                "name_desc" => q => q.OrderByDescending(m => m.Name),
-                "Abrv" => q => q.OrderBy(m => m.Abrv),
-                "abrv_desc" => q => q.OrderByDescending(m => m.Abrv),
                 "Make" => q => q.OrderBy(m => m.Make.Name),
-                "make_desc" => q => q.OrderByDescending(m => m.Make.Name),
-                _ => null,
+                _
+                   => null,
             };
 
             return GetPageFilterAsync(paging.Page, paging.PageSize, filter, orderBy, "Make");

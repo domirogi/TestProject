@@ -25,7 +25,7 @@ namespace Project.Service.Repository
         public async Task<VehicleMake> GetByIdMakeAsync(int id) => await GetByIdAsync(id);
 
 
-        public Task<IPagedList<VehicleMake>> GetFilterMakeAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging)
+        public Task<IPagedList<VehicleMake>> FindMakeAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging)
         {
             Expression<Func<VehicleMake, bool>> filter = null;
             if (!string.IsNullOrWhiteSpace(filtering.Filter))

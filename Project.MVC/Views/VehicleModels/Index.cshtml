@@ -1,0 +1,61 @@
+﻿@model X.PagedList.IPagedList<Project.MVC.ViewModels.VehicleModelViewModel>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="bg-white p-3">
+    <div class="row pt-3">
+        <div class="col-6">
+            <h2 class="text-primary">Vehicle Models</h2>
+        </div>
+        <form method="get" asp-controller="VehicleModels" asp-action="Index">
+            <div>
+                <div>
+                    <div class="row" style="padding-top:10px">
+                        <div>
+                            @Html.DropDownList("FilterId", ViewBag.MakesList as SelectList, "--select--", new { @class = "form-control" })
+                        </div>
+                        <div>
+                            <button type="submit" class="h-85 btn btn-info form-control" value="Filter">
+                                <i class="fas fa-search"></i>Filter by Make
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-6">
+            <a asp-controller="VehicleModels" asp-action="Create" class="btn btn-primary">
+                Create New
+            </a>
+        </div>
+        <br />
+    </div>
+    <br />
+    <ejs-grid id="Grid" dataSource="@Model" allowFiltering="true" allowSorting="true" allowPaging="true">
+        <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
+        <e-grid-pagesettings pageSize="5"></e-grid-pagesettings>
+
+        <e-grid-columns>
+            <e-grid-column field="Name" headerText="Name" textAlign="Left"></e-grid-column>
+            <e-grid-column field="Abrv" headerText="Abrv" textAlign="Left"></e-grid-column>
+            <e-grid-column field="Make" headerText="Make" textAlign="Left"></e-grid-column>
+            <e-grid-column field="Id" headerText="" width="75"
+                           template="<a rel='nofollow' href='VehicleModels/Edit/${Id}' class='btn btn-primary'> <i class='fas fa-edit'></i><a>">
+            </e-grid-column>
+            <e-grid-column field="Id" headerText="" width="75"
+                           template="<a rel='nofollow' href='VehicleModels/Details/${Id}' class='btn btn-primary'> <i class='fas fa-info-circle'></i><a>">
+            </e-grid-column>
+            <e-grid-column field="Id" headerText="" width="75"
+                           template="<a rel='nofollow' href='VehicleModels/Delete/${Id}' class='btn btn-danger'> <i class='fas fa-trash-alt'></i><a>">
+
+            </e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+
+
+
+
+
+

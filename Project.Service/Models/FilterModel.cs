@@ -8,11 +8,8 @@ namespace Project.Service.Models
 {
    public class FilterModel
     {
-        //public FilterModel()
-        //{
-        //    Filter = "";
-        //}
-        //public string Filter { get; set; }
+       
+        public string Filter { get; set; }
         public int FilterId { get; set; }
     }
 }

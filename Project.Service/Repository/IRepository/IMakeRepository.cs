@@ -16,6 +16,6 @@ namespace Project.Service.Repository.IRepository
         Task AddMakeAsync(VehicleMake makeAdd);
         Task UpdateMakeAsync(int id, VehicleMake makeUpdate);
         Task DeleteMakeAsync(int id);
-        Task<IPagedList<VehicleMake>> GetFilterMakeAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging);
+        Task<IPagedList<VehicleMake>> FindMakeAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging);
     }
 }

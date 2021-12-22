@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Project.MVC.AutoMapper;
 using Project.Service.DataAccess.Data;
+using Project.Service.Repository;
+using Project.Service.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,8 @@ namespace Project.MVC
         {
             services.AddDbContext<VehicleDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+            services.AddAutoMapper(typeof(MapProfile));
             services.AddControllersWithViews();
         }
 
