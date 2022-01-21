@@ -55,7 +55,7 @@ namespace Project.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var model = _mapper.Map<VehicleModel>(viewModel);
-                    await _repository.Model.AddModelAsync(model);
+                    await _repository.Model.AddAsync(model);
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -74,7 +74,7 @@ namespace Project.MVC.Controllers
             {
                 return NotFound();
             }
-            var model = await _repository.Model.GetByIdModelAsync(id);
+            var model = await _repository.Model.GetByIdAsync(id);
             if (model == null)
             {
                 return NotFound();
@@ -91,7 +91,7 @@ namespace Project.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var model = _mapper.Map<VehicleModel>(viewModel);
-                await _repository.Model.UpdateModelAsync(id, model);
+                await _repository.Model.UpdateAsync(id, model);
                 return RedirectToAction(nameof(Index));
             }
             await MakesDropdownAsync(viewModel.MakeId);
@@ -114,7 +114,7 @@ namespace Project.MVC.Controllers
         }
         public async Task MakesDropdownAsync(object selectMake = null)
         {
-            var list = _mapper.Map<IEnumerable<VehicleMakeDropDown>>(await _repository.Make.GetMakesAsync());
+            var list = _mapper.Map<IEnumerable<VehicleMakeDropDown>>(await _repository.Make.GetAllAsync());
             ViewBag.MakesList = new SelectList(list.OrderBy(m => m.Name), "Id", "Name", selectMake);
 
         }
@@ -142,7 +142,7 @@ namespace Project.MVC.Controllers
         {
             try
             {
-                var vehicleModel = await _repository.Model.GetByIdModelAsync(id);
+                var vehicleModel = await _repository.Model.GetByIdAsync(id);
                 if (vehicleModel == null)
                 {
                     return BadRequest();

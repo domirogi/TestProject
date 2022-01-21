@@ -16,13 +16,8 @@ namespace Project.Service.Repository
     {
         public MakeRepository(VehicleDbContext db) : base(db) { }
 
-        public async Task AddMakeAsync(VehicleMake makeAdd) => await AddAsync(makeAdd);
-
 
         public async Task DeleteMakeAsync(int id) => await DeleteAsync(id);
-
-
-        public async Task<VehicleMake> GetByIdMakeAsync(int id) => await GetByIdAsync(id);
 
 
         public Task<IPagedList<VehicleMake>> FindMakeAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging)
@@ -37,7 +32,7 @@ namespace Project.Service.Repository
             {
                 "Name" => q => q.OrderBy(m => m.Name),
                 "name_desc" => q => q.OrderByDescending(m => m.Name),
-                "Abrv" => q => q.OrderBy(s => s.Abrv),
+                "Abrv" => q => q.OrderBy(m => m.Abrv),
                 "abrv_desc" => q => q.OrderByDescending(m => m.Abrv),
                 _ => null,
             };
@@ -45,10 +40,6 @@ namespace Project.Service.Repository
             return GetPageFilterAsync(paging.Page, paging.PageSize, filter, orderBy);
         }
 
-        public async Task<IEnumerable<VehicleMake>> GetMakesAsync() => await GetAllAsync();
-
-
-        public async Task UpdateMakeAsync(int id, VehicleMake makeUpdate) => await UpdateAsync(id, makeUpdate);
 
     }
 }

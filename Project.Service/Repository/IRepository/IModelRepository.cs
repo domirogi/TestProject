@@ -11,12 +11,9 @@ namespace Project.Service.Repository.IRepository
 {
     public interface IModelRepository : IRepository<VehicleModel>
     {
-        public Task<IEnumerable<VehicleModel>> GetModelAsync();
-        Task<VehicleModel> GetByIdModelAsync(int id);
-        Task AddModelAsync(VehicleModel modelAdd);
-        Task UpdateModelAsync(int id, VehicleModel modelUpdate);
+       
         Task DeleteModelAsync(int id);
-        Task<VehicleModel> GetModelDetailsAsync(int id); 
+        Task<VehicleModel> GetModelDetailsAsync(int id);
         Task<IPagedList<VehicleModel>> FindModelsAsync(IFilterModel filtering, IModelSorting sorting, IModelPaging paging);
     }
 }

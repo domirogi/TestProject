@@ -14,9 +14,8 @@
                 <div>
                     <div class="row" style="padding-top:10px">
                         <div>
-                            @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control", placeholder = "search..." } })
+                            <input value="@ViewBag.Filter.Filter" name="Filter" class="form-control" placeholder="Find.." />
                         </div>
-
                         <div>
                             <button type="submit" class="h-100 btn btn-info form-control">
                                 <i class="fas fa-search"></i>Search

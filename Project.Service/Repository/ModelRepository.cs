@@ -12,23 +12,15 @@ using X.PagedList;
 
 namespace Project.Service.Repository
 {
-   public class ModelRepository : Repository<VehicleModel>, IModelRepository
+    public class ModelRepository : Repository<VehicleModel>, IModelRepository
     {
         public ModelRepository(VehicleDbContext db) : base(db) { }
 
-        public async Task AddModelAsync(VehicleModel modelAdd) => await AddAsync(modelAdd);
-
-
         public async Task DeleteModelAsync(int id) => await DeleteAsync(id);
-
-
-
-        public async Task<VehicleModel> GetByIdModelAsync(int id) => await GetByIdAsync(id);
-
 
         public Task<IPagedList<VehicleModel>> FindModelsAsync(IFilterModel filterModel, IModelSorting sorting, IModelPaging paging)
         {
-           
+
             Expression<Func<VehicleModel, bool>> filter = null;
             if (filterModel.FilterId != 0)
             {
@@ -43,14 +35,9 @@ namespace Project.Service.Repository
 
             return GetPageFilterAsync(paging.Page, paging.PageSize, filter, orderBy, "Make");
         }
-
-        public async Task<IEnumerable<VehicleModel>> GetModelAsync() => await  GetAllAsync();
-
-
+               
         public Task<VehicleModel> GetModelDetailsAsync(int id) => GetWithDetailsAsync(m => m.Id == id, "Make");
 
-
-        public Task UpdateModelAsync(int id, VehicleModel modelUpdate) => UpdateAsync(id, modelUpdate);
-       
+              
     }
 }

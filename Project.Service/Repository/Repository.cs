@@ -12,7 +12,7 @@ using X.PagedList;
 
 namespace Project.Service.Repository
 {
-    public abstract class Repository<T> : IRepository<T> where T : class, IEntityBase, new()
+    public  class Repository<T> : IRepository<T> where T : class, IEntityBase, new()
     {
         private readonly VehicleDbContext _db;
         private readonly DbSet<T> _dbSet;
